@@ -35,3 +35,19 @@ mv /tmp/usbdisk/isolinux.cfg /tmp/usbdisk/syslinux.cfg
 vi /usbdisk/syslinux.cfg  (add -p 1)
   APPEND -c boot.cfg -p 1    
 ```
+
+
+
+## Install vm-tools
+
+```bash
+sudo -s
+yum install perl
+yum install open-vm-tools
+tar xzvf VMwareTools-10.3.22-15902021.tar.gz
+cd vmware-tools-distrib
+./vmware-install.pl
+```
+
+
+
