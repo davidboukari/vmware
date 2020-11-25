@@ -38,7 +38,7 @@ vi /usbdisk/syslinux.cfg  (add -p 1)
 
 
 
-## Install vm-tools
+## Install vmware-tools
 
 ```bash
 sudo -s
