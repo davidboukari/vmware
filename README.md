@@ -49,5 +49,12 @@ cd vmware-tools-distrib
 ./vmware-install.pl
 ```
 
+## Install VCenter
+* mount the VMware-VCSA-all-7.0.1-17004997.iso
+* exec ui installer
+* Go to https://vsphereIP
+* create:  Add new DC -> Add new Cluster -> Add Host
+
+
 
 
