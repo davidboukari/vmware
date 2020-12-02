@@ -1,5 +1,7 @@
 ## set config.yaml
 
+Sample [config.yaml](config.yaml)
+
 ## initialize a kube cluster
 tkg init --infrastructure vsphere --vsphere-controlplane-endpoint-ip 192.168.0.155
 
