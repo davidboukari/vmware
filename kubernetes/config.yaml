@@ -1,0 +1,62 @@
+cert-manager-timeout: 30m0s
+overridesFolder: /root/.tkg/overrides
+NODE_STARTUP_TIMEOUT: 20m
+BASTION_HOST_ENABLED: "true"
+providers:
+  - name: cluster-api
+    url: /root/.tkg/providers/cluster-api/v0.3.10/core-components.yaml
+    type: CoreProvider
+  - name: aws
+    url: /root/.tkg/providers/infrastructure-aws/v0.5.5/infrastructure-components.yaml
+    type: InfrastructureProvider
+  - name: vsphere
+    url: /root/.tkg/providers/infrastructure-vsphere/v0.7.1/infrastructure-components.yaml
+    type: InfrastructureProvider
+  - name: azure
+    url: /root/.tkg/providers/infrastructure-azure/v0.4.8/infrastructure-components.yaml
+    type: InfrastructureProvider
+  - name: tkg-service-vsphere
+    url: /root/.tkg/providers/infrastructure-tkg-service-vsphere/v1.0.0/unused.yaml
+    type: InfrastructureProvider
+  - name: kubeadm
+    url: /root/.tkg/providers/bootstrap-kubeadm/v0.3.10/bootstrap-components.yaml
+    type: BootstrapProvider
+  - name: kubeadm
+    url: /root/.tkg/providers/control-plane-kubeadm/v0.3.10/control-plane-components.yaml
+    type: ControlPlaneProvider
+  - name: docker
+    url: /root/.tkg/providers/infrastructure-docker/v0.3.10/infrastructure-components.yaml
+    type: InfrastructureProvider
+images:
+    all:
+        repository: registry.tkg.vmware.run/cluster-api
+    cert-manager:
+        repository: registry.tkg.vmware.run/cert-manager
+        tag: v0.16.1_vmware.1
+VSPHERE_SERVER: 192.168.0.147
+#VSPHERE_USERNAME: tkg-user@vsphere.local
+#VSPHERE_PASSWORD: <encoded:QzFCb25Nb3QyUGFzcyE=>
+VSPHERE_USERNAME: Administrator@vsphere.local
+VSPHERE_PASSWORD: <encoded:QzFCb25Nb3QyUGFzcyE=>
+VSPHERE_DATACENTER: dc-toison-1
+VSPHERE_DATASTORE: disk1T
+VSPHERE_NETWORK: VM Network
+VSPHERE_RESOURCE_POOL: resource-pool-1
+VSPHERE_FOLDER: /dc-toison-1/vm/tkg
+# VSPHERE_TEMPLATE will be autodetected based on the kubernetes version. Please use VSPHERE_TEMPLATE only to override this behavior
+VSPHERE_TEMPLATE: photon-3-kube-v1.19.1-vmware.2
+VSPHERE_HAPROXY_TEMPLATE: photon-3-haproxy-v1.2.4-vmware.1
+VSPHERE_SSH_AUTHORIZED_KEY: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDCvQVbEEuvnwGB3rgSkbhaGLHPhjwdCbKJbxc6Pade3JK2ZWKru91MKrHjHOQc7oj47iiJawr4eeBkOJ8Vp+K3Myf1Tx8cwohSLQ9g5IAD3qkFNJ2iz1jEjCDnWkz6eCJ023fPcJNm0mwHMGkIJpLiFxAQtiNw3k0oS54rHl1qkC+wMqNujOX/MG/tGrhtEadk5aXupZGN1QDW0farYTGVHWiLSP7HJ3WFqkdb5nmZWJjSWW4cvstksQClE88UCPRiDOVYHZ1c+709ByVKepEUp+5aB/ksOdDoDApyb5qZiV8ZUFCSiHUWolI8L/JgfO2dXXtZfbsGk8ko01O4pXWb"
+SERVICE_CIDR: 100.64.0.0/13
+CLUSTER_CIDR: 100.96.0.0/11
+VSPHERE_WORKER_DISK_GIB: "50"
+VSPHERE_WORKER_NUM_CPUS: "2"
+VSPHERE_WORKER_MEM_MIB: "4096"
+VSPHERE_CONTROL_PLANE_DISK_GIB: "50"
+VSPHERE_CONTROL_PLANE_NUM_CPUS: "2"
+VSPHERE_CONTROL_PLANE_MEM_MIB: "4096"
+VSPHERE_HA_PROXY_DISK_GIB: "50"
+VSPHERE_HA_PROXY_NUM_CPUS: "2"
+VSPHERE_HA_PROXY_MEM_MIB: "4096"
+release:
+    version: v1.2.0
