@@ -56,5 +56,35 @@ cd vmware-tools-distrib
 * create:  Add new DC -> Add new Cluster -> Add Host
 
 
+# Deploy OVA to Template
+```
+Go to https://www.vmware.com/go/get-tkg and log in with your My VMware credentials.
+
+Download the Tanzu Kubernetes Grid OVAs for node VMs.
+
+    Kubernetes 1.18.6: Photon v3 Kubernetes 1.18.6 OVA
+    Kubernetes 1.17.9: Photon v3 Kubernetes 1.17.9 OVA
+
+If you want to use Tanzu Kubernetes Grid 1.1.3 to deploy Kubernetes clusters with older versions as well as Kubernetes v1.18.6 and v1.17.9 clusters, after downloading the OVAs above, select version 1.1.2, 1.1.0, or 1.0.0 in the downloads page, and download the Photon v3 Kubernetes OVAs for those releases.
+In the vSphere Client, right-click an object in the vCenter Server inventory, select Deploy OVF template.
+Select Local file, click the button to upload files, and navigate to the downloaded OVA file on your local machine.
+
+Follow the installer prompts to deploy a VM from the OVA temaplate.
+
+    Accept or modify the appliance name
+    Select the destination datacenter or folder
+    Select the destination host, cluster, or resource pool
+    Accept the end user license agreements (EULA)
+    Select the disk format and destination datastore
+    Select the network for the VM to connect to
+
+NOTE: If you select thick provisioning as the disk format, when Tanzu Kubernetes Grid creates cluster node VMs from the template, the full size of each node's disk will be reserved. This can rapidly consume storage if you deploy many clusters or clusters with many nodes. However, if you select thin provisioning, as you deploy clusters this can give a false impression of the amount of storage that is available. If you select thin provisioning, there might be enough storage available at the time that you deploy clusters, but storage might run out as the clusters run and accumulate data.
+Click Finish to deploy the VM.
+
+When the OVA deployment finishes, right-click the VM and select Template > Convert to Template.
+
+NOTE: Do not power on the VM before you convert it to a template.
+
+In the VMs and Templates view, right-click the new template, select Add Permission, and assign the tkg-user to the template with the TKG role.
 
 
