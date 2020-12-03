@@ -4,6 +4,7 @@ Sample [config.yaml](config.yaml)
 
 ## Initialize a kube cluster
 ```bash
+yum install docker
 tkg init --infrastructure vsphere --vsphere-controlplane-endpoint-ip 192.168.0.155
 tkg init --infrastructure vsphere --name vsphere-management-cluster --plan dev --vsphere-controlplane-endpoint-ip 192.168.0.155 --deploy-tkg-on-vSphere7
 ```
