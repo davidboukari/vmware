@@ -29,7 +29,23 @@ Switched to context "vsphere-management-cluster-admin@vsphere-management-cluster
  kuubectl get nodes
  kubectl get pods
  kubectl get namespaces
- 
+
+
+# Deploy a Cluster with Multiple Worker Nodes
+tkg create cluster my-dev-cluster --plan dev --worker-machine-count 3
+
+# Deploy a Cluster in a Specific Namespace
+tkg create cluster my-cluster --plan dev --namespace my_namespace
+
+# Deploy a Kubernetes v1.17.3 cluster:
+tkg create cluster k8s-1-17-3-cluster --plan dev --kubernetes-version v1.17.3
+
+# Deploy a Kubernetes v1.17.6 cluster:
+tkg create cluster k8s-1-17-6-cluster --plan dev  --kubernetes-version v1.17.6
+
+# Deploy a Kubernetes v1.18.2 cluster:
+tkg create cluster k8s-1-18-2-cluster --plan dev --kubernetes-version v1.18.2
+
  ```
 
 ## Delete
