@@ -23,6 +23,12 @@ tkg get management-cluster
  MANAGEMENT-CLUSTER-NAME       CONTEXT-NAME                                                 STATUS
  vsphere-management-cluster *  vsphere-management-cluster-admin@vsphere-management-cluster  Success
  
+kubectl config use-context vsphere-management-cluster-admin@vsphere-management-cluster
+Switched to context "vsphere-management-cluster-admin@vsphere-management-cluster".
+ 
+ kuubectl get nodes
+ kubectl get pods
+ kubectl get namespaces
  
  ```
 
