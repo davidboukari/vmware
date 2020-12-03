@@ -17,5 +17,14 @@ ssh capv@<ip>
 kubectl logs deployment.apps/capv-controller-manager -n capv-system manager --kubeconfig  /root/.kube-tkg/tmp/config_WtjLHBIU
 ```
 
+## 
+```bash
+tkg get management-cluster
+ MANAGEMENT-CLUSTER-NAME       CONTEXT-NAME                                                 STATUS
+ vsphere-management-cluster *  vsphere-management-cluster-admin@vsphere-management-cluster  Success
+ 
+ 
+ ```
+
 ## Delete
 kind get clusters | xargs -n1 kind delete cluster --name
