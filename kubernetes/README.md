@@ -32,7 +32,7 @@ Switched to context "vsphere-management-cluster-admin@vsphere-management-cluster
 
 
 # Deploy a Cluster with Multiple Worker Nodes
-tkg create cluster my-dev-cluster --plan dev --worker-machine-count 3
+tkg create cluster my-dev-cluster --plan dev --worker-machine-count 3 --vsphere-controlplane-endpoint-ip 192.168.0.129
 
 # Deploy a Cluster in a Specific Namespace
 tkg create cluster my-cluster --plan dev --namespace my_namespace
