@@ -6,8 +6,8 @@
 ## Installation 
 * Create a directory DCname/tkg
 * Deploy ova template 
-** photon-3-kube-v1.19.1-vmware.2.ova
-** photon-3-haproxy-v1.2.4-vmware.1.ova
+1. photon-3-kube-v1.19.1-vmware.2.ova
+2. photon-3-haproxy-v1.2.4-vmware.1.ova
 * Convert them at template and copy them in the directory DCname/tkg
 * Deploy a centos VM
 * In the centos VM
