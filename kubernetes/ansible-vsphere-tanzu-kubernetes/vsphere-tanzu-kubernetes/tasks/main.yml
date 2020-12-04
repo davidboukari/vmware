@@ -51,22 +51,21 @@
 - debug:
     var: config_tkg_parameters
 
-# if {{ config_file_dir }}/config.yam does not exist
-#- name: Create backup
-#  stat:
-#    path: "{{ config_file_dir }}/config.yaml"
-#    register: stat_result_config_file
-
 - name: Set backup extension name
   set_fact:
     back_extension: "{{ lookup('password', '/dev/null chars=ascii_letters,digits') | to_uuid }}"
 
 - debug:
     var: back_extension
-  
+
+- name: Check if {{ config_file_dir }}/config.yam does not exist
+  stat:
+    path: "{{ config_file_dir }}/config.yaml"
+  register: stat_result_config_file
 
 - name: Backup config.yaml
   command: mv "{{ config_file_dir }}" "{{ config_file_dir }}.{{ back_extension }}"
+  when: stat_result_config_file.stat.exists
 
 - name: Create Init file
   command: "/usr/local/bin/tkg init"
