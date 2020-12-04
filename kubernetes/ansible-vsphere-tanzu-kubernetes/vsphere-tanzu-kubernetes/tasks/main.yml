@@ -1,0 +1,80 @@
+---
+# tasks file for vsphere-tanzu-kubernetes
+
+- name: Install docker
+  yum:
+    name: docker
+    state: 'present'
+
+- name: Enable docker service
+  service:
+    name: docker
+    enabled: yes
+
+- name: Set config var
+  set_fact: 
+    config_tkg_parameters: "{{ lookup('template', './config.yaml.j2') }}"
+
+- name: Disable selinux
+  #ansible.posix.selinux:
+  selinux:
+    state: disabled
+
+#- name: Install commands kubectl kind tkg 
+#  copy:
+#    src: "{{ item }}"
+#    dest: /usr/local/bin
+#    owner: root
+#    group: root
+#    mode: '0755'
+#  with_items:
+#    - kubectl
+#    - kind
+#    - tkg
+
+- name: Install commands kubectl kind tkg 
+  unarchive:
+    src: "{{ item }}.tar.gz"
+    dest: /usr/local/bin
+  with_items:
+    - "{{ binary_commands }}"
+
+- name: Set attr kubectl kind tkg 
+  file:
+    path: "/usr/local/bin/{{ item }}"
+    owner: root
+    group: root
+    mode: '0755'
+  with_items:
+    - "{{ binary_commands }}"
+
+- debug:
+    var: config_tkg_parameters
+
+# if {{ config_file_dir }}/config.yam does not exist
+#- name: Create backup
+#  stat:
+#    path: "{{ config_file_dir }}/config.yaml"
+#    register: stat_result_config_file
+
+- name: Set backup extension name
+  set_fact:
+    back_extension: "{{ lookup('password', '/dev/null chars=ascii_letters,digits') | to_uuid }}"
+
+- debug:
+    var: back_extension
+  
+
+- name: Backup config.yaml
+  command: mv "{{ config_file_dir }}" "{{ config_file_dir }}.{{ back_extension }}"
+
+- name: Create Init file
+  command: "/usr/local/bin/tkg init"
+  ignore_errors: yes 
+  # when: not stat_result_config_file.stat.exists
+
+- name: Add new fields in config file
+  lineinfile:
+    path: "{{ config_file_dir }}/config.yaml"
+    regexp: '^release:'
+    line: "{{ config_tkg_parameters }}\nrelease:"  
