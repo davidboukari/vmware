@@ -9,6 +9,7 @@
 - name: Enable docker service
   service:
     name: docker
+    state: started
     enabled: yes
 
 - name: Set config var
