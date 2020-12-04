@@ -1,0 +1,7 @@
+# terraform-vsphere
+
+```bash
+docker build -t docker.io/davbou/terraform-vsphere:0.1 .
+
+docker run -it --privileged  docker.io/davbou/terraform-vsphere:0.1 /bin/bash
+```

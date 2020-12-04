@@ -1,0 +1,56 @@
+---
+# tasks file for ansible-vsphere-terraform
+- name: Set backup extension name
+  set_fact:
+    back_extension: "{{ lookup('password', '/dev/null chars=ascii_letters,digits') | to_uuid }}"
+
+- name: Install packages
+  yum:
+    name: "{{ packages_to_install }}"
+    state: 'present'
+
+- name: Check if "{{ install_dir }}" does not exist
+  stat:
+    path: "{{ install_dir }}"
+  register: stat_result_install_dir
+
+- name: Backup "{{ install_dir }}" to  "{{ install_dir }}.{{ back_extension }}"
+  command: mv "{{ install_dir }}" "{{ install_dir }}.{{ back_extension }}"
+  when: stat_result_install_dir.stat.exists
+
+
+- name: Create install directory "{{ install_dir }}"
+  file: 
+    name: "{{ install_dir }}"
+    state: directory
+    owner: "{{ install_user }}"
+    group: "{{ install_group }}"
+  
+- name: Install terraform
+  shell: VERSION=0.13.5 && TARGET=terraform_${VERSION}_linux_amd64 && cd "{{ install_dir }}" && wget  "https://releases.hashicorp.com/terraform/${VERSION}/${TARGET}.zip" && unzip "${TARGET}.zip" && rm "${TARGET}.zip" && chmod +x terraform &&  mv terraform  /usr/local/bin
+
+- name: Install go
+  shell: VERSION=1.15.5 && cd "{{ install_dir }}" && if [ -f go${VERSION}.linux-amd64.tar.gz ];then  rm go${VERSION}.linux-amd64.tar.gz 2>/dev/null ;fi &&  wget https://golang.org/dl/go${VERSION}.linux-amd64.tar.gz  && tar xzvf go${VERSION}.linux-amd64.tar.gz -C /usr/local 
+
+- name: Check if the go path exists
+  lineinfile:
+    state: absent
+    path: /etc/bashrc
+    regexp: "^(.*) PATH=(.*)/usr/local/go/bin"
+  check_mode: true
+  changed_when: false
+  register: check_go_path_does_not_exits
+
+- name: Patch /etc/bashrc
+  lineinfile:
+    path: /etc/bashrc
+    line: 'export PATH=$PATH:/usr/local/go/bin'  
+  when: check_go_path_does_not_exits.found == 0
+
+- name: Install terraform provider sources
+  shell: export PATH=$PATH:/usr/local/go/bin && cd "{{ install_dir }}" && git clone https://github.com/hashicorp/terraform-provider-vsphere.git && cd terraform-provider-vsphere #&& make
+
+- name: Install terraform sample sources
+  shell: cd "{{ install_dir }}" && git clone https://github.com/davidboukari/terraform-vsphere-samples.git 
+
+

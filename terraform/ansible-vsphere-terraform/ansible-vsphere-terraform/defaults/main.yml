@@ -1,0 +1,16 @@
+---
+# defaults file for ansible-vsphere-terraform
+install_user: root
+install_group: "{{ install_user }}"
+install_dir: /root/terraform-vsphere  
+
+packages_to_install:
+  - vim
+  - wget
+  - curl
+  - unzip
+  - git
+  - gcc
+  - make
+  - gcc-go
+
