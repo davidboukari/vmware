@@ -5,13 +5,19 @@ Sample [config.yaml](config.yaml)
 ## Initialize a kube cluster
 ```bash
 yum install docker
-tkg init --infrastructure vsphere --vsphere-controlplane-endpoint-ip 192.168.0.155
-tkg init --infrastructure vsphere --name vsphere-management-cluster --plan dev --vsphere-controlplane-endpoint-ip 192.168.0.155 --deploy-tkg-on-vSphere7
+cd ~/vmware/kubernetes/ansible-vsphere-tanzu-kubernetes && ansible-playbook playbook.yml
+set the credentials in ~/.tkg/config.yaml
+
+tkg init --infrastructure vsphere --name my-vsphere-cluster --plan dev  --vsphere-controlplane-endpoint-ip 192.168.0.155 --deploy-tkg-on-vSphere7
+tkg get management-cluster
+kubectl config use-context my-vsphere-cluster-admin@my-vsphere-cluster
+# Scale the workers
+tkg scale cluster my-vsphere-cluster --worker-machine-count 4  --namespace tkg-system
 ```
 
 ## ssh connexion
 ```bash
-ssh capv@<ip>
+ssh capv@<clusternodeip>
 ```
 ## Get the logs
 ```bash
