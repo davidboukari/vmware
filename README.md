@@ -94,11 +94,12 @@ In the VMs and Templates view, right-click the new template, select Add Permissi
 ## Troubleshooting
 ```
 Error Message on boot:
-
+CRC error during decompression. Receiveid CRC ... gzip_extract failed for vim.v00
 ....
 
 
-Copy the file vim.v00 from the cdrom ESXI-7.....-STANDARD to the partition BOOTBANK1
+=> Copy the file vim.v00 from the cdrom ESXI-7.....-STANDARD to the USB partition BOOTBANK1
+Then put the usb disk on the server and start it
 
 
 ```
