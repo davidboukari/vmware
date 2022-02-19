@@ -36,7 +36,10 @@ vi /usbdisk/syslinux.cfg  (add -p 1)
   APPEND -c boot.cfg -p 1    
 ```
 
-
+* Finally there are 3 partitions on the USB disk  
+  => BOOTBANK1: the esxi boot files like b.b00, crx.v00, ...
+  => BOOTBANK2: boot.cfg
+  => unknown: the esxi real partition
 
 ## Install vmware-tools
 
@@ -88,3 +91,14 @@ NOTE: Do not power on the VM before you convert it to a template.
 In the VMs and Templates view, right-click the new template, select Add Permission, and assign the tkg-user to the template with the TKG role.
 
 
+## Troubleshooting
+```
+Error Message on boot:
+
+....
+
+
+Copy the file vim.v00 from the cdrom ESXI-7.....-STANDARD to the partition BOOTBANK1
+
+
+```
