@@ -106,3 +106,10 @@ Then put the usb disk on the server and start it
 
 * setting ip/ipv6 configuration failed: ('
 http://vcloud-lab.com/entries/vcenter-server/vmware-vcenter-server-vcsa-setting-ip-ipv6-configuration-failed-ip-configuration-not-allowed
+
+* Unable to connect to https://vcenter:5480 after ip change
+https://communities.vmware.com/t5/VMware-vCenter-Discussions/vCenter-6-fails-to-restart-after-IP-change/td-p/418957
+```
+I ran into this issue today when changing the ip-address of the vcenter appliance. It seems the old ip address is not changed in the hosts file on the appliance. to correct this login to appliance management on port 5480 and enable ssh login & bash access. login with ssh and drop into the shell, edit the /etc/hosts file with vi and change the ip-address. After a reboot of the VM and restarting all services in the shell everything was working again.
+```
+
