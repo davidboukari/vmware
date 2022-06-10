@@ -103,3 +103,6 @@ Then put the usb disk on the server and start it
 
 
 ```
+
+* setting ip/ipv6 configuration failed: ('
+http://vcloud-lab.com/entries/vcenter-server/vmware-vcenter-server-vcsa-setting-ip-ipv6-configuration-failed-ip-configuration-not-allowed
