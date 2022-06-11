@@ -113,3 +113,24 @@ https://communities.vmware.com/t5/VMware-vCenter-Discussions/vCenter-6-fails-to-
 I ran into this issue today when changing the ip-address of the vcenter appliance. It seems the old ip address is not changed in the hosts file on the appliance. to correct this login to appliance management on port 5480 and enable ssh login & bash access. login with ssh and drop into the shell, edit the /etc/hosts file with vi and change the ip-address. After a reboot of the VM and restarting all services in the shell everything was working again.
 ```
 
+### Vmware vcenter: regenerate all certificates
+* https://kb.vmware.com/s/article/2112283
+```
+Launch the vSphere 6.x Certificate Manager.
+
+For vCenter Server 6.x/7.x Appliance: /usr/lib/vmware-vmca/bin/certificate-manager
+For Windows vCenter Server 6.x: C:\Program Files\VMware\vCenter Server\vmcad\certificate-manager
+ 
+Select Option 4 (Regenerate a new VMCA Root Certificate and replace all certificates)
+
+Note: You can also select Option 8 (Reset all Certificates). Both options perform the same functionality. (The difference is that option 8 does not perform automatic Rollback of the certificates).
+
+certificate vmware
+ 
+Type the administrator@vsphere.local password when prompted.
+If this is the first time VMCA certificates are re-generated on this system, you are asked to configure the certool.cfg. On subsequent tasks, you are offered to re-use these values.
+
+Note: These values are used to define certificates issued by VMCA.
+
+Enter these values as prompted by the VMCA (See Step 5 to confirm the Name/Hostname/VMCA):
+```
