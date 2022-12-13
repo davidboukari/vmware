@@ -150,3 +150,53 @@ Enter these values as prompted by the VMCA (See Step 5 to confirm the Name/Hostn
 
 
 ```
+
+## Reset administrator@vsphere.local password
+```
+root@192.168.1.145's password:
+
+[ERROR]: Failed to connect to service.
+Use service-control command to manage applmgmt service
+
+    * List APIs: "help api list"
+    * List Plugins: "help pi list"
+    * Launch BASH: "shell"
+
+Command> shell
+Shell access is granted to root
+oot@localhost [ ~ ]# /usr/lib/vmware-vmdir/bin/vdcadmintool
+
+==================
+Please select:
+0. exit
+1. Test LDAP connectivity
+2. Force start replication cycle
+3. Reset account password
+4. Set log level and mask
+5. Set vmdir state
+6. Get vmdir state
+7. Get vmdir log level and mask
+==================
+
+3
+  Please enter account UPN : administrator@vsphere.local
+New password is -
+8nwixxxxxxxxxxxxxxxxx
+```
+
+
+## Change vcenter networking
+```
+/opt/vmware/share/vami/vami_config_net
+
+ Main Menu
+
+0)	Show Current Configuration (scroll with Shift-PgUp/PgDown)
+1)	Exit this program
+2)	Default Gateway
+3)	Hostname
+4)	DNS
+5)	Proxy Server
+6)	IP Address Allocation for eth0
+Enter a menu number [0]: 0
+```
