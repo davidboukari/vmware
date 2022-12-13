@@ -140,9 +140,13 @@ Enter these values as prompted by the VMCA (See Step 5 to confirm the Name/Hostn
 ## change root password
 * https://www.mchelgham.com/vcsa-6-7-comment-reinitialiser-le-mot-de-passe-du-compte-root/
 ```
-Boot on the VM when image spash photon appears press 'e' add in the command line 'rw init=/bin/bash' press F10
-
-After the boot 'loadkeys fr' , tape 'passwd' and enter the password
+* On the ESX restart VM vcenter
+* Boot on the VM when image spash photon appears 
+* press 'e' 
+* add in the command line 'rw init=/bin/bash' press F10
+* After the boot 'loadkeys fr' , 
+* tape 'passwd' and enter the password
+* umount /
 
 
 ```
