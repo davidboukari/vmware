@@ -200,3 +200,6 @@ New password is -
 6)	IP Address Allocation for eth0
 Enter a menu number [0]: 0
 ```
+## ESX Create datacenter 
+
+<img width="1060" alt="image" src="https://user-images.githubusercontent.com/32338685/208385523-fab10beb-32cd-4f1d-8d65-7ac0f9a20ab5.png">
