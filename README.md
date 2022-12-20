@@ -89,7 +89,7 @@ When the OVA deployment finishes, right-click the VM and select Template > Conve
 NOTE: Do not power on the VM before you convert it to a template.
 
 In the VMs and Templates view, right-click the new template, select Add Permission, and assign the tkg-user to the template with the TKG role.
-
+```
 
 ## Troubleshooting
 ```
