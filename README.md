@@ -203,3 +203,42 @@ Enter a menu number [0]: 0
 ## ESX Create datacenter 
 
 <img width="1060" alt="image" src="https://user-images.githubusercontent.com/32338685/208385523-fab10beb-32cd-4f1d-8d65-7ac0f9a20ab5.png">
+
+
+## Enable ssh on ESX-i
+* https://phoenixnap.com/kb/esxi-enable-ssh
+
+<img width="764" alt="image" src="https://user-images.githubusercontent.com/32338685/221839075-15b9a5b2-9ee6-40cb-ad38-71ffe21eb8f8.png">
+
+
+
+## Activate intel VTx
+* https://www.codeproject.com/Tips/1032357/Enable-Virtualization-inside-ESXi-Virtual-Machine
+```
+The most tricky part. Make sure to check your steps:
+
+    Shutdown your virtual machine inside ESXi
+    SSH to your ESXi:
+    C++
+
+ssh -lroot your.esxi.box.address
+
+run df - locate address of your mounted drive with VMs:
+
+ df
+Filesystem        Bytes         Used    Available Use% Mounted on
+VMFS-5     999922073600 539996717056 459925356544  54% /vmfs/volumes/WDC1TB
+
+Locate location of your vmx:
+
+find / -name *.vmx | grep HUM
+/vmfs/volumes/54183927-04f91918-a72a-6805ca147c55/W-NodeBox-HUM/W-NodeBox-HUM.vmx
+
+Put setting vhv.enable=TRUE at the bottom of your box's vmx file:
+
+ echo 'vhv.enable = "TRUE"' >> /vmfs/volumes/54183927-04f91918-a72a-6805ca147c55/W-NodeBox-HUM/
+W-NodeBox-HUM.vmx
+
+You are done.  Start your machine normally and enjoy from possibility to run vagrant&virtualbox controlled boxes inside your ESXi host. (Hopefully, you need it like me just to test the vagrant setup.)
+
+```
