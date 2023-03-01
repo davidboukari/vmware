@@ -212,7 +212,7 @@ Enter a menu number [0]: 0
 
 
 
-## Activate intel VTx
+## Activate intel VTx for a VM
 * https://www.codeproject.com/Tips/1032357/Enable-Virtualization-inside-ESXi-Virtual-Machine
 ```
 The most tricky part. Make sure to check your steps:
